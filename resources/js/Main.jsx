@@ -8,7 +8,12 @@ createInertiaApp({
         const pages = import.meta.glob("./Pages/**/*.jsx", { eager: false })
         let page = await pages[`./Pages/${name}.jsx`]()
 
-        page.default.layout = page.default.layout || ((page) => <Layout children={page} />)
+        if (name.startsWith("Auth/")) {
+            page.default.layout = undefined
+        } else {
+            page.default.layout = page.default.layout || ((page) => <Layout children={page} />)
+        }
+
         return page
     },
     setup({ el, App, props }) {
