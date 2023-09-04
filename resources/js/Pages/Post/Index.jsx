@@ -1,9 +1,10 @@
 import { Link } from "@inertiajs/react"
 import React from "react"
+import Layout from "@/Shared/Layout.jsx"
 
 export default function Index() {
     return (
-        <>
+        <Layout>
             <article className="mt-12 border-b border-gray-300 pb-12 max-w-2xl mx-auto">
                 <h1 className="text-3xl font-bold mb-4 font-sans">
                     <Link href="/post/My-first-post">My First Post</Link>
@@ -57,6 +58,6 @@ export default function Index() {
                     molestiae odio officiis quod rem, saepe, similique temporibus tenetur vel?
                 </p>
             </article>
-        </>
+        </Layout>
     )
 }
