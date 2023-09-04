@@ -6,5 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    return Inertia::render('Post/Index');
+});
+
+Route::get('/contact', function () {
+    return Inertia::render('Contact/Index');
 });
