@@ -3,7 +3,11 @@ import { createRoot } from "react-dom/client"
 import Layout from "@/Shared/Layout.jsx"
 import React from "react"
 
+const appName = window.document.getElementsByTagName("title")[0]?.innerText || "Blog"
+
 createInertiaApp({
+    title: (title) => (title ? `${appName} | ${title}` : `${appName}`),
+
     resolve: async (name) => {
         const pages = import.meta.glob("./Pages/**/*.jsx", { eager: false })
         let page = await pages[`./Pages/${name}.jsx`]()
@@ -16,11 +20,8 @@ createInertiaApp({
 
         return page
     },
+
     setup({ el, App, props }) {
-        createRoot(el).render(
-            <React.StrictMode>
-                <App {...props} />
-            </React.StrictMode>
-        )
+        createRoot(el).render(<App {...props} />)
     }
 })

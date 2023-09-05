@@ -8,12 +8,13 @@ export default function Layout({ children }) {
             <Nav />
             <main>
                 <iframe
-                    className="mt-6"
-                    width="100%"
-                    frameBorder="no"
-                    scrolling="no"
-                    seamless
-                    src="https://player.simplecast.com/08381222-a27d-497b-813a-e66c04b6f50f?dark=false"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/vBpQ1SlfVtU?si=gyLFahGiOHoVPMs3"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
                 ></iframe>
                 {children}
             </main>
