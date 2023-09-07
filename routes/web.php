@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Post/Index');
+    return Inertia::render('Post/Index', [
+        'user' => User::get(['username'])
+    ]);
 });
 
 Route::get('/service', function () {

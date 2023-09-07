@@ -1,5 +1,3 @@
-import ServiceLayout from "@/Shared/ServiceLayout.jsx"
-import Layout from "@/Shared/Layout.jsx"
 import { Head } from "@inertiajs/react"
 import React from "react"
 
@@ -13,9 +11,3 @@ export default function Index() {
         </>
     )
 }
-
-Index.layout = (page) => (
-    <Layout>
-        <ServiceLayout children={page} />
-    </Layout>
-)
