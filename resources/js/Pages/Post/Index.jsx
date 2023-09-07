@@ -8,7 +8,7 @@ export default function Index({ posts }) {
                 return (
                     <div key={post.id}>
                         <h1>
-                            <Link href={`/post/${post.id}`}>{post.title}</Link>
+                            <Link href={`/post/${post.id}`} dangerouslySetInnerHTML={{ __html: post.title }}></Link>
                         </h1>
                         <p>{post.excerpt}</p>
                     </div>
