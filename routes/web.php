@@ -12,9 +12,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/post/{id}', function ($id) {
+Route::get('/post/{post:slug}', function (Post $post) { //Post->where('slug', $post)->findOrFail();
     return Inertia::render('Post/Show', [
-        'post' => Post::find($id)
+        'post' => $post
     ]);
 });
 
