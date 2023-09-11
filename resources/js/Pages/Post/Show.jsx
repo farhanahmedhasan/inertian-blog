@@ -6,9 +6,16 @@ export default function Show({ post }) {
     console.log(post)
     return (
         <div>
-            <Link href={`/category/${post.category.slug}`} className="text-blue-600">
-                {post.category.name}
-            </Link>
+            <p>
+                By
+                <Link href={`/posts/${post.user.username}`} className="text-blue-600">
+                    &nbsp;{post.user.username}&nbsp;
+                </Link>
+                in&nbsp;
+                <Link href={`/category/${post.category.slug}`} className="text-blue-600">
+                    {post.category.name}
+                </Link>
+            </p>
 
             <h1 dangerouslySetInnerHTML={{ __html: post.title }}></h1>
             <p>{post.excerpt}</p>
