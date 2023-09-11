@@ -5,7 +5,7 @@ export default function Index({ posts }) {
     console.log(posts)
     return (
         <div>
-            {posts.posts.map((post) => {
+            {posts.map((post) => {
                 return (
                     <div key={post.id} className="mb-6">
                         <h1 className="text-2xl font-bold">

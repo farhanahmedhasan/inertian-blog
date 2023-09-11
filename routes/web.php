@@ -22,20 +22,20 @@ Route::get('/post/{post:slug}', function (Post $post) { //Post->where('slug', $p
 
 Route::get('category/{category:slug}', function (Category $category) {
     return Inertia::render('Category/Index', [
-        'posts' => $category->load('posts')
+        'posts' => $category->posts->load('author', 'category')
     ]);
 });
 
 Route::get('authors/{author:username}', function (User $author) {
-    return Inertia::render('User/Index', [
-        'posts' => $author->load('posts')
+    return Inertia::render('Post/Index', [
+        'posts' => $author->posts->load('category', 'author')
     ]);
 });
 
-Route::get('/service', function () {
-    return Inertia::render('Service/Index');
-});
-
-Route::get('/contact', function () {
-    return Inertia::render('Contact/Index');
-});
+//Route::get('/service', function () {
+//    return Inertia::render('Service/Index');
+//});
+//
+//Route::get('/contact', function () {
+//    return Inertia::render('Contact/Index');
+//});
