@@ -8,8 +8,8 @@ export default function Show({ post }) {
         <div>
             <p>
                 By
-                <Link href={`/posts/${post.user.username}`} className="text-blue-600">
-                    &nbsp;{post.user.username}&nbsp;
+                <Link href={`/authors/${post.author.username}`} className="text-blue-600">
+                    &nbsp;{post.author.username}&nbsp;
                 </Link>
                 in&nbsp;
                 <Link href={`/category/${post.category.slug}`} className="text-blue-600">

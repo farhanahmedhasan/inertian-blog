@@ -10,13 +10,13 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Post/Index', [
-        "posts" => Post::latest()->with('category', 'user')->get()
+        "posts" => Post::latest()->with('category', 'author')->get()
     ]);
 });
 
 Route::get('/post/{post:slug}', function (Post $post) { //Post->where('slug', $post)->findOrFail();
     return Inertia::render('Post/Show', [
-        'post' => $post->load('category', 'user')
+        'post' => $post->load('category', 'author')
     ]);
 });
 
@@ -26,9 +26,9 @@ Route::get('category/{category:slug}', function (Category $category) {
     ]);
 });
 
-Route::get('posts/{user:username}', function (User $user) {
+Route::get('authors/{author:username}', function (User $author) {
     return Inertia::render('User/Index', [
-        'posts' => $user->load('posts')
+        'posts' => $author->load('posts')
     ]);
 });
 
