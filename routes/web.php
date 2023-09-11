@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Post/Index', [
-        "posts" => Post::with('category', 'user')->get()
+        "posts" => Post::latest()->with('category', 'user')->get()
     ]);
 });
 
