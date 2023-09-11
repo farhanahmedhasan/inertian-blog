@@ -16,19 +16,19 @@ Route::get('/', function () {
 
 Route::get('/post/{post:slug}', function (Post $post) { //Post->where('slug', $post)->findOrFail();
     return Inertia::render('Post/Show', [
-        'post' => $post->load('category', 'author')
+        'post' => $post
     ]);
 });
 
 Route::get('category/{category:slug}', function (Category $category) {
     return Inertia::render('Category/Index', [
-        'posts' => $category->posts->load('author', 'category')
+        'posts' => $category->posts
     ]);
 });
 
 Route::get('authors/{author:username}', function (User $author) {
     return Inertia::render('Post/Index', [
-        'posts' => $author->posts->load('category', 'author')
+        'posts' => $author->posts
     ]);
 });
 

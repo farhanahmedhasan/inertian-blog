@@ -17,6 +17,9 @@ class Post extends Model
         'body'
     ];
 
+    //Gimme author and category data every time i call post model
+    protected $with = ['author', 'category'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
