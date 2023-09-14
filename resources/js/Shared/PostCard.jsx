@@ -42,8 +42,8 @@ export default function PostCard({ post, className }) {
                             <img src="/images/lary-avatar.svg" alt="Lary avatar" />
                             <div className="ml-3">
                                 <h5>
-                                    By
-                                    <span className="font-bold">{post?.author?.name}</span>
+                                    By&nbsp;
+                                    <span className="font-bold">{post?.author?.username}</span>
                                 </h5>
                             </div>
                         </div>

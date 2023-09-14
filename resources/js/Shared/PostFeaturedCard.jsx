@@ -43,7 +43,7 @@ export default function PostFeaturedCard({ post }) {
                             <img src="/images/lary-avatar.svg" alt="Lary avatar" />
                             <div className="ml-3">
                                 <h5>
-                                    By <span className="font-bold">{post.author.name}</span>
+                                    By <span className="font-bold">{post.author.username}</span>
                                 </h5>
                             </div>
                         </div>
