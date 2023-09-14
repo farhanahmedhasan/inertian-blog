@@ -1,17 +1,14 @@
 import Footer from "@/Shared/Footer.jsx"
 import Nav from "@/Shared/Nav.jsx"
+
 import React from "react"
-import { Head } from "@inertiajs/react"
 
 export default function Layout({ children }) {
     return (
-        <>
+        <section className="px-6 py-8">
             <Nav />
-            <Head>
-                <meta head-key="description" name="description" content="This is default meta description" />
-            </Head>
             <main>{children}</main>
             <Footer />
-        </>
+        </section>
     )
 }

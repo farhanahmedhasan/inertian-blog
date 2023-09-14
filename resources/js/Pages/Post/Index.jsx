@@ -1,31 +1,33 @@
 import React from "react"
-import { Link } from "@inertiajs/react"
+import PostCard from "@/Shared/PostCard.jsx"
+import PostFeaturedCard from "@/Shared/PostFeaturedCard.jsx"
+import PostsHeader from "@/Pages/partials/PostsHeader.jsx"
 
 export default function Index({ posts }) {
     console.log(posts)
     return (
-        <div>
-            {posts.map((post) => {
-                return (
-                    <div key={post.id} className="mb-6">
-                        <h1 className="text-2xl font-bold">
-                            <Link href={`/post/${post.slug}`} dangerouslySetInnerHTML={{ __html: post.title }}></Link>
-                        </h1>
-                        <p>
-                            By
-                            <Link href={`/authors/${post.author.username}`} className="text-blue-600">
-                                &nbsp;{post.author.username}&nbsp;
-                            </Link>
-                            in&nbsp;
-                            <Link href={`category/${post.category.slug}`} className="text-blue-600">
-                                {post.category.name}
-                            </Link>
-                        </p>
+        <>
+            <PostsHeader />
 
-                        <p dangerouslySetInnerHTML={{ __html: post.excerpt }}></p>
-                    </div>
-                )
-            })}
-        </div>
+            <section className="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+                <PostFeaturedCard />
+
+                <div className="lg:grid lg:grid-cols-2">
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                </div>
+
+                <div className="lg:grid lg:grid-cols-3">
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                    <PostCard />
+                </div>
+            </section>
+        </>
     )
 }
