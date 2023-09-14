@@ -1,6 +1,8 @@
-import React from "react"
+import CategoryButton from "@/Shared/CategoryButton.jsx"
+
 import { Link } from "@inertiajs/react"
 import moment from "moment"
+import React from "react"
 
 export default function PostCard({ post, className }) {
     return (
@@ -15,13 +17,7 @@ export default function PostCard({ post, className }) {
                 <div className="mt-8 flex flex-col justify-between">
                     <header>
                         <div className="space-x-2">
-                            <Link
-                                href={`/category/${post?.category?.slug}`}
-                                className="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                                style={{ fontSize: "10px" }}
-                            >
-                                {post?.category?.name}
-                            </Link>
+                            <CategoryButton category={post.category} />
                         </div>
 
                         <div className="mt-4">
