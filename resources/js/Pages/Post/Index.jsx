@@ -10,7 +10,7 @@ export default function Index({ posts }) {
             <PostsHeader />
 
             <section className="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
-                <PostFeaturedCard />
+                <PostFeaturedCard post={posts[0]} />
 
                 <div className="lg:grid lg:grid-cols-2">
                     <PostCard />
