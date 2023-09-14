@@ -1,8 +1,12 @@
 import React from "react"
+import { Link } from "@inertiajs/react"
+import moment from "moment"
 
-export default function PostCard() {
+export default function PostCard({ post, className }) {
     return (
-        <article className="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
+        <article
+            className={`transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl ${className}`}
+        >
             <div className="py-6 px-5">
                 <div>
                     <img src="/images/illustration-3.png" alt="Blog Post illustration" className="rounded-xl" />
@@ -11,62 +15,46 @@ export default function PostCard() {
                 <div className="mt-8 flex flex-col justify-between">
                     <header>
                         <div className="space-x-2">
-                            <a
-                                href="#"
+                            <Link
+                                href={`/category/${post?.category?.slug}`}
                                 className="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
                                 style={{ fontSize: "10px" }}
                             >
-                                Techniques
-                            </a>
-                            <a
-                                href="#"
-                                className="px-3 py-1 border border-red-300 rounded-full text-red-300 text-xs uppercase font-semibold"
-                                style={{ fontSize: "10px" }}
-                            >
-                                Updates
-                            </a>
+                                {post?.category?.name}
+                            </Link>
                         </div>
 
                         <div className="mt-4">
-                            <h1 className="text-3xl">
-                                This is a big title and it will look great on two or even three lines. Wooohoo!
-                            </h1>
+                            <h1 className="text-3xl">{post?.title}</h1>
 
                             <span className="mt-2 block text-gray-400 text-xs">
-                                Published <time>1 day ago</time>
+                                Published <time>{moment(post?.created_at).fromNow()}</time>
                             </span>
                         </div>
                     </header>
 
                     <div className="text-sm mt-4">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-
-                        <p className="mt-4">
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.
-                        </p>
+                        <p>{post?.excerpt}</p>
                     </div>
 
                     <footer className="flex justify-between items-center mt-8">
                         <div className="flex items-center text-sm">
                             <img src="/images/lary-avatar.svg" alt="Lary avatar" />
                             <div className="ml-3">
-                                <h5 className="font-bold">Lary Laracore</h5>
-                                <h6>Mascot at Laracasts</h6>
+                                <h5>
+                                    By
+                                    <span className="font-bold">{post?.author?.name}</span>
+                                </h5>
                             </div>
                         </div>
 
                         <div>
-                            <a
-                                href="#"
+                            <Link
+                                href={`/post/${post?.slug}`}
                                 className="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
                             >
                                 Read More
-                            </a>
+                            </Link>
                         </div>
                     </footer>
                 </div>
