@@ -1,6 +1,30 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { router } from "@inertiajs/react"
 
-export default function PostsHeader() {
+export default function PostsHeader({ categories }) {
+    const [catValue, setCatValue] = useState("")
+    function handleCatValChange(e) {
+        e.preventDefault()
+        setCatValue(e.target.value)
+    }
+
+    useEffect(() => {
+        if (catValue === "all") {
+            router.get("/")
+        }
+
+        console.log(catValue)
+        if (catValue !== "" && catValue !== "all") {
+            router.get(
+                `/category/${catValue}`,
+                {},
+                {
+                    preserveState: true
+                }
+            )
+        }
+    }, [catValue])
+
     return (
         <header className="max-w-xl mx-auto mt-20 text-center">
             <h1 className="text-4xl">
@@ -20,14 +44,18 @@ export default function PostsHeader() {
                 {/*Category*/}
                 <div className="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
                     <select
-                        defaultValue="category"
+                        value={catValue}
+                        onChange={handleCatValChange}
                         className="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold"
                     >
-                        <option value="category" disabled>
-                            Category
-                        </option>
-                        <option value="personal">Personal</option>
-                        <option value="business">Business</option>
+                        <option value="all">All</option>
+                        {categories.map((category) => {
+                            return (
+                                <option key={category.id} value={category.slug}>
+                                    {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+                                </option>
+                            )
+                        })}
                     </select>
 
                     <svg

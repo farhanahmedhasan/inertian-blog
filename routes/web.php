@@ -10,7 +10,8 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Post/Index', [
-        "posts" => Post::latest()->with('category', 'author')->get()
+        "posts" => Post::latest()->with('category', 'author')->get(),
+        "categories" => Category::all()
     ]);
 });
 
@@ -22,7 +23,8 @@ Route::get('/post/{post:slug}', function (Post $post) { //Post->where('slug', $p
 
 Route::get('category/{category:slug}', function (Category $category) {
     return Inertia::render('Post/Index', [
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'categories' => $category->all()
     ]);
 });
 

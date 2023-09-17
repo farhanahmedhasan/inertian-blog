@@ -3,11 +3,10 @@ import PostsHeader from "@/Pages/partials/PostsHeader.jsx"
 import PostCard from "@/Shared/PostCard.jsx"
 import React from "react"
 
-export default function Index({ posts }) {
-    console.log(posts)
+export default function Index({ posts, categories }) {
     return (
         <>
-            <PostsHeader />
+            <PostsHeader categories={categories} />
 
             <section className="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
                 {posts.length > 0 ? (
