@@ -24,6 +24,7 @@ Route::get('/post/{post:slug}', function (Post $post) { //Post->where('slug', $p
 Route::get('category/{category:slug}', function (Category $category) {
     return Inertia::render('Post/Index', [
         'posts' => $category->posts,
+        'curCategory' => $category,
         'categories' => $category->all()
     ]);
 });
