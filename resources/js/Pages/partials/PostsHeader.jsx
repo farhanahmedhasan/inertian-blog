@@ -2,32 +2,31 @@ import DropDown from "@/Shared/DropDown.jsx"
 
 import React from "react"
 
-const fruits = [
-    {
-        id: 1,
-        name: "Apple",
-        slug: "apple"
-    },
-    {
-        id: 2,
-        name: "Guava",
-        slug: "guava"
-    },
-    {
-        id: 3,
-        name: "Jack",
-        slug: "jack"
-    },
-    {
-        id: 4,
-        name: "Mango",
-        slug: "mango"
-    }
-]
-const curFruit = undefined
+// const fruits = [
+//     {
+//         id: 1,
+//         name: "Apple",
+//         slug: "apple"
+//     },
+//     {
+//         id: 2,
+//         name: "Guava",
+//         slug: "guava"
+//     },
+//     {
+//         id: 3,
+//         name: "Jack",
+//         slug: "jack"
+//     },
+//     {
+//         id: 4,
+//         name: "Mango",
+//         slug: "mango"
+//     }
+// ]
+// const curFruit = undefined
 
 export default function PostsHeader({ categories, curCategory }) {
-    console.log(curCategory)
     return (
         <header className="max-w-xl mx-auto mt-20 text-center">
             <h1 className="text-4xl">
@@ -46,13 +45,18 @@ export default function PostsHeader({ categories, curCategory }) {
             <div className="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
                 {/*Category*/}
                 <div className="relative lg:inline-flex items-center bg-gray-100 rounded-xl">
-                    <DropDown curItem={curCategory} items={categories} triggerName="Category" />
+                    <DropDown
+                        curItem={curCategory}
+                        items={categories}
+                        triggerName="Category"
+                        itemVisitPath="category"
+                    />
                 </div>
 
                 {/*Other Filters Example Using Same Component*/}
                 <div className="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
                     <div className="relative lg:inline-flex items-center bg-gray-100 rounded-xl">
-                        <DropDown curItem={curFruit} items={fruits} triggerName="Fruits" />
+                        {/*<DropDown curItem={curFruit} items={fruits} triggerName="Fruits" itemVisitPath="fruits" />*/}
                     </div>
                 </div>
 

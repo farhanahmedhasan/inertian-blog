@@ -1,11 +1,11 @@
+import DropDownTrigger from "@/Shared/DropDownTrigger.jsx"
 import { getCapitalizeStr } from "@/helper/utils.js"
+import DropDownLink from "@/Shared/DropDownLink.jsx"
 import useClickAway from "@/hooks/useClickAway.js"
 
 import React from "react"
-import DropDownTrigger from "@/Shared/DropDownTrigger.jsx"
-import { Link } from "@inertiajs/react"
 
-export default function DropDown({ items, curItem, triggerName }) {
+export default function DropDown({ items, curItem, triggerName, itemVisitPath }) {
     const { ref, toggle, setToggle } = useClickAway()
 
     function handleCatToggle() {
@@ -26,22 +26,15 @@ export default function DropDown({ items, curItem, triggerName }) {
                         items.length > 8 && "h-[180px] overflow-x-hidden overflow-y-scroll z-50"
                     }`}
                 >
-                    <Link
-                        href="/"
-                        className="block text-left text-sm px-3 leading-5 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
-                    >
-                        All
-                    </Link>
+                    <DropDownLink href="/">All</DropDownLink>
                     {items.map((item) => (
-                        <Link
+                        <DropDownLink
                             key={item.id}
-                            href={`/category/${item.slug}`}
-                            className={`block text-left text-sm px-3 leading-5 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white ${
-                                curItem ? item.id === curItem.id && "bg-blue-500 text-white" : ""
-                            }`}
+                            href={`/${itemVisitPath}/${item.slug}`}
+                            isActive={curItem ? item.id === curItem.id : false}
                         >
                             {getCapitalizeStr(item.name)}
-                        </Link>
+                        </DropDownLink>
                     ))}
                 </div>
             )}
