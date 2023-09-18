@@ -7,6 +7,7 @@ import React from "react"
 
 export default function DropDown({ items, curItem, triggerName, itemVisitPath }) {
     const { ref, toggle, setToggle } = useClickAway()
+    const url = window.location.pathname
 
     function handleCatToggle() {
         setToggle((prev) => !prev)
@@ -26,7 +27,9 @@ export default function DropDown({ items, curItem, triggerName, itemVisitPath })
                         items.length > 8 && "h-[180px] overflow-x-hidden overflow-y-scroll z-50"
                     }`}
                 >
-                    <DropDownLink href="/">All</DropDownLink>
+                    <DropDownLink href="/" isActive={url === "/"}>
+                        All
+                    </DropDownLink>
                     {items.map((item) => (
                         <DropDownLink
                             key={item.id}
