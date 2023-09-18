@@ -1,6 +1,7 @@
 import DropDownTrigger from "@/Shared/DropDownTrigger.jsx"
 import { getCapitalizeStr } from "@/helper/utils.js"
 import DropDownLink from "@/Shared/DropDownLink.jsx"
+import ArrowDown from "@/asstes/svgs/ArrowDown.jsx"
 import useClickAway from "@/hooks/useClickAway.js"
 
 import React from "react"
@@ -17,7 +18,8 @@ export default function DropDown({ items, curItem, triggerName, itemVisitPath })
         <div>
             {/*Trigger*/}
             <DropDownTrigger triggerRef={ref} curItem={curItem} onToggle={handleCatToggle}>
-                {triggerName}
+                {curItem ? getCapitalizeStr(curItem.name) : triggerName}
+                <ArrowDown classes="absolute pointer-events-none right-[12px]" />
             </DropDownTrigger>
 
             {/*Links*/}

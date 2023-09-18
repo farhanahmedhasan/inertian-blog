@@ -1,9 +1,6 @@
-import ArrowDown from "@/asstes/svgs/ArrowDown.jsx"
-import { getCapitalizeStr } from "@/helper/utils.js"
-
 import React from "react"
 
-export default function DropDownTrigger({ children, onToggle, triggerRef, curItem }) {
+export default function DropDownTrigger({ children, onToggle, triggerRef }) {
     return (
         <button
             type="button"
@@ -11,8 +8,7 @@ export default function DropDownTrigger({ children, onToggle, triggerRef, curIte
             ref={triggerRef}
             onClick={onToggle}
         >
-            {curItem ? getCapitalizeStr(curItem.name) : children}
-            <ArrowDown />
+            {children}
         </button>
     )
 }
