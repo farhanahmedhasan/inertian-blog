@@ -29,9 +29,7 @@ export default function PostCard({ post, className }) {
                         </div>
                     </header>
 
-                    <div className="text-sm mt-4">
-                        <p>{post?.excerpt}</p>
-                    </div>
+                    <div className="mt-4 space-y-4" dangerouslySetInnerHTML={{ __html: post?.excerpt }}></div>
 
                     <footer className="flex justify-between items-center mt-8">
                         <div className="flex items-center text-sm">

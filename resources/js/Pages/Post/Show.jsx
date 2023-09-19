@@ -59,7 +59,10 @@ export default function Show({ post }) {
 
                         <h1 className="font-bold text-3xl lg:text-4xl mb-10">{post.title}</h1>
 
-                        <div className="space-y-4 lg:text-lg leading-loose">{post.body}</div>
+                        <div
+                            className="space-y-4 lg:text-lg leading-loose"
+                            dangerouslySetInnerHTML={{ __html: post.body }}
+                        ></div>
                     </div>
                 </article>
             </div>

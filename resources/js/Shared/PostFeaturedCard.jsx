@@ -30,9 +30,7 @@ export default function PostFeaturedCard({ post }) {
                         </div>
                     </header>
 
-                    <div className="text-sm mt-2">
-                        <p>{post.excerpt}</p>
-                    </div>
+                    <div className="mt-2 space-y-4" dangerouslySetInnerHTML={{ __html: post.excerpt }}></div>
 
                     <footer className="flex justify-between items-center mt-8">
                         <div className="flex items-center text-sm">
