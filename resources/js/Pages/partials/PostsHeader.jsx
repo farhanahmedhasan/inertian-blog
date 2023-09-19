@@ -33,16 +33,7 @@ export default function PostsHeader({ categories, curCategory }) {
                 Latest <span className="text-blue-500">Laravel From Scratch</span> News
             </h1>
 
-            <h2 className="inline-flex mt-2">
-                By Lary Laracore <img src="/images/lary-head.svg" alt="Head of Lary the mascot" />
-            </h2>
-
-            <p className="text-sm mt-14">
-                Another year. Another update. We&apos;re refreshing the popular Laravel series with new content.
-                I&apos;m going to keep you guys up to speed with what&apos;s going on!
-            </p>
-
-            <div className="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
+            <div className="space-y-2 lg:space-y-0 lg:space-x-4 mt-6">
                 {/*Category*/}
                 <div className="relative lg:inline-flex items-center bg-gray-100 rounded-xl">
                     <DropDown
@@ -54,11 +45,9 @@ export default function PostsHeader({ categories, curCategory }) {
                 </div>
 
                 {/*Other Filters Example Using Same Component*/}
-                <div className="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-                    <div className="relative lg:inline-flex items-center bg-gray-100 rounded-xl">
-                        {/*<DropDown curItem={curFruit} items={fruits} triggerName="Fruits" itemVisitPath="fruits" />*/}
-                    </div>
-                </div>
+                {/*<div className="relative lg:inline-flex items-center bg-gray-100 rounded-xl">*/}
+                {/*<DropDown curItem={curFruit} items={fruits} triggerName="Fruits" itemVisitPath="fruits" />*/}
+                {/*</div>*/}
 
                 {/*Search*/}
                 <div className="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
