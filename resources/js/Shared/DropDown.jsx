@@ -7,7 +7,7 @@ import useClickAway from "@/hooks/useClickAway.js"
 import route from "ziggy-js"
 import React from "react"
 
-export default function DropDown({ items, curItem, triggerName, itemVisitPath }) {
+export default function DropDown({ items, curItem, triggerName, itemVisitPath, allRef, searchData }) {
     const { ref, toggle, setToggle } = useClickAway()
 
     function handleCatToggle() {
@@ -29,13 +29,13 @@ export default function DropDown({ items, curItem, triggerName, itemVisitPath })
                         items.length > 8 && "h-[180px] overflow-x-hidden overflow-y-scroll z-50"
                     }`}
                 >
-                    <DropDownLink href="/" isActive={route().current("home")}>
+                    <DropDownLink href={allRef} isActive={route().current("home")}>
                         All
                     </DropDownLink>
                     {items.map((item) => (
                         <DropDownLink
                             key={item.id}
-                            href={`/${itemVisitPath}/${item.slug}`}
+                            href={`/${itemVisitPath}/${item.slug}${searchData ? `?search=${searchData}` : ""}`}
                             isActive={curItem ? item.id === curItem.id : false}
                         >
                             {getCapitalizeStr(item.name)}
