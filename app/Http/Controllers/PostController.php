@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index(): Response
     {
         return Inertia::render('Post/Index', [
-            "posts" => $this->getPosts(request("search")),
+            "posts" => Post::latest()->filter(request(["search"]))->get(),
             "categories" => Category::all(),
             "searchData" => request("search")
         ]);
@@ -24,17 +24,5 @@ class PostController extends Controller
         return Inertia::render('Post/Show', [
             'post' => $post
         ]);
-    }
-
-    protected function getPosts($searchData)
-    {
-        $posts = Post::latest();
-
-        if ($searchData) {
-            $posts->where('title', "like", "%" . $searchData . "%")
-                ->orWhere('body', "like", "%" . $searchData . "%");
-        }
-
-        return $posts->get();
     }
 }

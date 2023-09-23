@@ -31,11 +31,26 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeSearchTitleBody(Builder $builder, string $title, string $body): void
+    public function scopeFilter($query, array $filters): void //Post::newQuery()->filter()
     {
-        $builder->where(function (Builder $builder) use ($title, $body) {
-            $builder->where('title', "like", "%" . $title . "%")
-                ->orWhere('body', "like", "%" . $body . "%");
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            dd($search);
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%');
         });
     }
+
+    //        dd($filters['search'] ?? false);
+//        if ($filters['search'] ?? false) {
+//            $query->where('title', "like", "%" . $filters['search'] . "%")
+//                ->orWhere('body', "like", "%" . $filters['search'] . "%");
+//        }
+
+//    public function scopeSearchTitleBody(Builder $builder, string $title, string $body): void
+//    {
+//        $builder->where(function (Builder $builder) use ($title, $body) {
+//            $builder->where('title', "like", "%" . $title . "%")
+//                ->orWhere('body', "like", "%" . $body . "%");
+//        });
+//    }
 }
