@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -11,28 +12,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::get('/', function () {
-    $posts = Post::latest();
-
-    $searchData = request("search");
-
-    if ($searchData) {
-        $posts->where('title', "like", "%" . $searchData . "%")
-            ->orWhere('body', "like", "%" . $searchData . "%");
-    }
-
-    return Inertia::render('Post/Index', [
-        "posts" => $posts->get(),
-        "categories" => Category::all(),
-        "searchData" => $searchData
-    ]);
-})->name("home");
-
-Route::get('/post/{post:slug}', function (Post $post) { //Post->where('slug', $post)->findOrFail();
-    return Inertia::render('Post/Show', [
-        'post' => $post
-    ]);
-});
+Route::get('/', [PostController::class, 'index'])->name("home");
+Route::get('/post/{post:slug}', [PostController::class, 'show']); //Post->where('slug', $post)->findOrFail();
 
 Route::get('category/{category:slug}', function (Category $category, Request $request) {
     $searchData = $request->search;
