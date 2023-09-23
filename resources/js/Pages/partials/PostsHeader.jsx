@@ -13,7 +13,7 @@ export default function PostsHeader({ categories, curCategory, searchData }) {
     function handleSubmit(e) {
         e.preventDefault()
         router.get(
-            `?search=${searchQuery}`,
+            `${curCategory?.slug ? `?category=${curCategory?.slug}&search=${searchQuery}` : `?search=${searchQuery}`}`,
             {},
             {
                 preserveState: true

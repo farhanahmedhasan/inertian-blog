@@ -4,7 +4,6 @@ import DropDownLink from "@/Shared/DropDownLink.jsx"
 import ArrowDown from "@/asstes/svgs/ArrowDown.jsx"
 import useClickAway from "@/hooks/useClickAway.js"
 
-import route from "ziggy-js"
 import React from "react"
 
 export default function DropDown({ items, curItem, triggerName, itemVisitPath, allRef, searchData }) {
@@ -29,13 +28,13 @@ export default function DropDown({ items, curItem, triggerName, itemVisitPath, a
                         items.length > 8 && "h-[180px] overflow-x-hidden overflow-y-scroll z-50"
                     }`}
                 >
-                    <DropDownLink href={allRef} isActive={route().current("home")}>
+                    <DropDownLink href={allRef} isActive={curItem === null}>
                         All
                     </DropDownLink>
                     {items.map((item) => (
                         <DropDownLink
                             key={item.id}
-                            href={`/${itemVisitPath}/${item.slug}${searchData ? `?search=${searchData}` : ""}`}
+                            href={`/?${itemVisitPath}=${item.slug}${searchData ? `&search=${searchData}` : ""}`}
                             isActive={curItem ? item.id === curItem.id : false}
                         >
                             {getCapitalizeStr(item.name)}
