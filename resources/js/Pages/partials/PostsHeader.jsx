@@ -10,10 +10,14 @@ export default function PostsHeader({ categories, curCategory, searchData }) {
         setSearchQuery(e.target.value)
     }
 
+    const url = searchQuery
+        ? `${curCategory?.slug ? `?category=${curCategory?.slug}&search=${searchQuery}` : `?search=${searchQuery}`}`
+        : `?category=${curCategory?.slug}`
+
     function handleSubmit(e) {
         e.preventDefault()
         router.get(
-            `${curCategory?.slug ? `?category=${curCategory?.slug}&search=${searchQuery}` : `?search=${searchQuery}`}`,
+            url,
             {},
             {
                 preserveState: true
