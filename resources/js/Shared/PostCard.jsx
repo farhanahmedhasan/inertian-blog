@@ -36,8 +36,10 @@ export default function PostCard({ post, className }) {
                             <img src="/images/lary-avatar.svg" alt="Lary avatar" />
                             <div className="ml-3">
                                 <h5>
-                                    By&nbsp;
-                                    <span className="font-bold">{post?.author?.username}</span>
+                                    <Link href={`authors/${post.author.username}`}>
+                                        By&nbsp;
+                                        <span className="font-bold">{post?.author?.username}</span>
+                                    </Link>
                                 </h5>
                             </div>
                         </div>

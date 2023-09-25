@@ -37,7 +37,9 @@ export default function PostFeaturedCard({ post }) {
                             <img src="/images/lary-avatar.svg" alt="Lary avatar" />
                             <div className="ml-3">
                                 <h5>
-                                    By <span className="font-bold">{post.author.username}</span>
+                                    <Link href={`authors/${post.author.username}`}>
+                                        By <span className="font-bold">{post.author.username}</span>
+                                    </Link>
                                 </h5>
                             </div>
                         </div>

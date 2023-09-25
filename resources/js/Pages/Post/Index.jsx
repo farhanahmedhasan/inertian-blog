@@ -1,6 +1,7 @@
 import PostFeaturedCard from "@/Shared/PostFeaturedCard.jsx"
 import PostsHeader from "@/Pages/partials/PostsHeader.jsx"
 import PostCard from "@/Shared/PostCard.jsx"
+
 import React from "react"
 
 export default function Index({ posts, categories, curCategory, searchData }) {
