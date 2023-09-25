@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index(): Response
     {
         return Inertia::render('Post/Index', [
-            "posts" => Post::latest()->filter(request(["search", "category"]))->get(),
+            "posts" => Post::latest()->filter(request(["search", "category", "author"]))->get(),
             "categories" => Category::all(),
             "searchData" => request("search"),
             "curCategory" => Category::firstWhere('slug', request('category'))

@@ -34,7 +34,10 @@ export default function DropDown({ items, curItem, triggerName, itemVisitPath, a
                     {items.map((item) => (
                         <DropDownLink
                             key={item.id}
-                            href={`/?${itemVisitPath}=${item.slug}${searchData ? `&search=${searchData}` : ""}`}
+                            href={`
+                                ?${itemVisitPath}=${item.slug}
+                                ${searchData ? `&search=${searchData}` : ""}
+                            `}
                             isActive={curItem ? item.id === curItem.id : false}
                         >
                             {getCapitalizeStr(item.name)}

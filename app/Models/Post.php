@@ -37,15 +37,20 @@ class Post extends Model
             $query->whereHas('category', function ($query) use ($category) {
                 $query->where('slug', $category);
             });
-        })->when($filters['search'] ?? false, function ($query, $search) {
+        });
+
+        $query->when($filters['search'] ?? false, function ($query, $search) {
             $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%')
                     ->orWhere('body', 'like', '%' . $search . '%');
             });
-
         });
 
-
+        $query->when($filters['author'] ?? false, function ($query, $author) {
+            $query->whereHas('author', function ($query) use ($author) {
+                $query->where('username', $author);
+            });
+        });
     }
 
 //    public function scopeSearchTitleBody(Builder $builder, string $title, string $body): void
