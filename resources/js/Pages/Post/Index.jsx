@@ -3,6 +3,7 @@ import PostsHeader from "@/Pages/partials/PostsHeader.jsx"
 import PostCard from "@/Shared/PostCard.jsx"
 
 import React from "react"
+import Pagination from "@/Shared/Pagination.jsx"
 
 export default function Index({ posts, categories, curCategory, searchData }) {
     return (
@@ -10,13 +11,13 @@ export default function Index({ posts, categories, curCategory, searchData }) {
             <PostsHeader categories={categories} curCategory={curCategory} searchData={searchData} />
 
             <section className="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
-                {posts.length > 0 ? (
+                {posts.data.length > 0 ? (
                     <>
-                        <PostFeaturedCard post={posts[0]} />
+                        <PostFeaturedCard post={posts.data[0]} />
 
-                        {posts.length > 1 && (
+                        {posts.data.length > 1 && (
                             <div className="lg:grid lg:grid-cols-6">
-                                {posts.map((post, index) => {
+                                {posts.data.map((post, index) => {
                                     if (index === 0) return
                                     return (
                                         <PostCard
@@ -33,6 +34,15 @@ export default function Index({ posts, categories, curCategory, searchData }) {
                     <p className="text-center">There is no post yet. Please check back later...</p>
                 )}
             </section>
+
+            {posts.total > 6 && (
+                <div className="flex items-center justify-end gap-x-4 mt-8">
+                    <p>
+                        Showing {posts.from} to {posts.to} of {posts.total} results
+                    </p>
+                    <Pagination links={posts.links} />
+                </div>
+            )}
         </>
     )
 }
