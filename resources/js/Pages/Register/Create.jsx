@@ -19,7 +19,7 @@ export default function Create() {
     function handleSubmit(e) {
         e.preventDefault()
 
-        console.log(data)
+        post("/register")
     }
 
     return (

@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'username' => "mehar",
             'name' => "Humayra Binte Mehar"
         ]);
-        User::factory(10)->create();
+        User::factory(9)->create();
 
         Category::factory(10)->create();
 
