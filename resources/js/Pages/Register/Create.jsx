@@ -1,7 +1,8 @@
 import React from "react"
 import { useForm } from "@inertiajs/react"
+import ErrorMessage from "@/Shared/ErrorMessage.jsx"
 
-export default function Create() {
+export default function Create({ errors: validationError }) {
     const { data, setData, post, processing, errors } = useForm({
         username: "",
         name: "",
@@ -38,6 +39,7 @@ export default function Create() {
                         value={data.username}
                         onChange={handleChange}
                     />
+                    <ErrorMessage message={validationError.username} />
                 </div>
 
                 <div className="mb-6">
@@ -52,6 +54,7 @@ export default function Create() {
                         value={data.name}
                         onChange={handleChange}
                     />
+                    <ErrorMessage message={validationError.name} />
                 </div>
 
                 <div className="mb-6">
@@ -66,6 +69,7 @@ export default function Create() {
                         value={data.email}
                         onChange={handleChange}
                     />
+                    <ErrorMessage message={validationError.email} />
                 </div>
 
                 <div className="mb-6">
@@ -81,6 +85,7 @@ export default function Create() {
                         value={data.password}
                         onChange={handleChange}
                     />
+                    <ErrorMessage message={validationError.password} />
                 </div>
 
                 <div className="mb-6">

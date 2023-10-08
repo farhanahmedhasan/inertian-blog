@@ -18,10 +18,10 @@ class RegisterController extends Controller
     {
         //Validate the request
         $attributes = $request->validate([
-            'name' => 'min:3 | max:32 | required',
-            'username' => 'min:3 | max:32 | required',
-            "email" => 'email | required',
-            "password" => 'min:8 | max:32 | required'
+            'name' => 'required | min:3 | max:32',
+            'username' => 'required | min:3 | max:32 | unique:users,username',
+            "email" => 'required | email | unique:users,email',
+            "password" => 'required | min:8 | max:32'
         ]);
 
         //Create the user
