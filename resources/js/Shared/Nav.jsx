@@ -1,6 +1,8 @@
+import { Link, usePage } from "@inertiajs/react"
 import React from "react"
 
 export default function Nav() {
+    const { user } = usePage().props
     return (
         <nav className="md:flex md:justify-between md:items-center">
             <div>
@@ -10,9 +12,34 @@ export default function Nav() {
             </div>
 
             <div className="mt-8 md:mt-0">
-                <a href="/" className="text-xs font-bold uppercase">
-                    Home Page
-                </a>
+                {user ? (
+                    <>
+                        <span>Welcome back, {user.name.split(" ")[0]} </span>
+                        <Link
+                            className="text-blue-500 text-xs font-semibold uppercase py-3 px-5"
+                            href="/logout"
+                            method="post"
+                            as="button"
+                        >
+                            Logout
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <Link href="/register" method="get" className="text-xs font-bold uppercase">
+                            Register
+                        </Link>
+
+                        <Link
+                            className="text-blue-500 text-xs font-semibold uppercase py-3 px-5"
+                            href="/login"
+                            method="get"
+                            as="button"
+                        >
+                            Login
+                        </Link>
+                    </>
+                )}
 
                 <a
                     href="#"

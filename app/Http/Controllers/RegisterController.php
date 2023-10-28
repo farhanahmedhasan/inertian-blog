@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -16,7 +17,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        //Validate the request
+        // Validate the request
         $attributes = $request->validate([
             'name' => 'required | min:3 | max:32',
             'username' => 'required | min:3 | max:32 | unique:users,username',
@@ -24,10 +25,13 @@ class RegisterController extends Controller
             "password" => 'required | min:8 | max:32'
         ]);
 
-        //Create the user
-        User::create($attributes);
+        // Create the user
+        $user = User::create($attributes);
 
-        //Flash Success Message
+        // log the user
+        auth()->login($user);
+
+        // Flash Success Message
 //        $request->session()->flash('user/create', [
 //            'message' => "User created successfully",
 //            'action' => "user/create"
