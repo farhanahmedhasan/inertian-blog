@@ -3,7 +3,7 @@ import moment from "moment"
 
 export default function Comment({ comment }) {
     return (
-        <article className="flex bg-gray-100 border border-gray-200 p-4 rounded-md space-x-6">
+        <article className="flex bg-gray-50 border border-gray-200 p-4 rounded-md space-x-6">
             <div className="flex-shrink-0 rounded-full overflow-hidden">
                 <img
                     className="rounded-full"
