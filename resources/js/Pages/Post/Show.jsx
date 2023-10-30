@@ -5,9 +5,7 @@ import { Link } from "@inertiajs/react"
 import moment from "moment"
 import React from "react"
 
-export default function Show({ post }) {
-    // console.log(category)
-    // console.log(post)
+export default function Show({ post, comments }) {
     return (
         <section className="px-6 py-8">
             <div className="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
@@ -69,10 +67,9 @@ export default function Show({ post }) {
                 </article>
 
                 <section className="space-y-6">
-                    <Comment />
-                    <Comment />
-                    <Comment />
-                    <Comment />
+                    {comments.map((comment) => (
+                        <Comment key={comment.id} comment={comment} />
+                    ))}
                 </section>
             </div>
         </section>

@@ -23,7 +23,8 @@ class PostController extends Controller
     public function show(Post $post): Response
     {
         return Inertia::render('Post/Show', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $post->comments()->get()
         ]);
     }
 }
