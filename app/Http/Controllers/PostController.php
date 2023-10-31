@@ -20,12 +20,13 @@ class PostController extends Controller
         ]);
     }
 
-    //    TODO: show only some keys on the comments->author && comments->post
+    //    TODO: show only some keys on the comments->author && comments
     public function show(Post $post): Response
     {
+        // dd($post->comments()->with('author')->get());
         return Inertia::render('Post/Show', [
             'post' => $post,
-            'comments' => $post->comments()->get()
+            'comments' => $post->comments()->with('author')->get()
         ]);
     }
 }
