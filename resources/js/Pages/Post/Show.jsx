@@ -1,6 +1,6 @@
 import AddCommentForm from "@/Pages/partials/AddCommentForm.jsx"
 import CategoryButton from "@/Shared/CategoryButton.jsx"
-import Comment from "../../Shared/Comment.jsx"
+import Comment from "@/Shared/Comment.jsx"
 
 import { Link } from "@inertiajs/react"
 import moment from "moment"
