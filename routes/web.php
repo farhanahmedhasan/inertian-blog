@@ -7,6 +7,19 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use MailchimpMarketing\ApiClient;
+
+Route::get("/ping", function () {
+    $mailchimp = new ApiClient();
+
+    $mailchimp->setConfig([
+        'apiKey' => config('services.mailchimp.key'),
+        'server' => 'us21'
+    ]);
+
+    $response = $mailchimp->ping->get();
+    dd($response);
+});
 
 Route::get('/', [PostController::class, 'index'])->name("home");
 Route::get('/post/{post:slug}', [PostController::class, 'show']); //Post->where('slug', $post)->findOrFail();
