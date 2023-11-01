@@ -1,6 +1,27 @@
+import ErrorMessage from "@/Shared/ErrorMessage.jsx"
+
+import { useForm } from "@inertiajs/react"
 import React from "react"
 
 export default function Footer() {
+    const { data, setData, post, errors } = useForm({
+        email: ""
+    })
+
+    function handleChange(e) {
+        const key = e.target.name
+        const value = e.target.value
+
+        setData({ ...data, [key]: value })
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        post("/newsletter", {
+            preserveScroll: true
+        })
+    }
+
     return (
         <footer
             id="newsletter"
@@ -11,18 +32,22 @@ export default function Footer() {
             <p className="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
 
             <div className="mt-10">
-                <div className="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
-                    <form method="POST" action="#" className="lg:flex text-sm mb-0">
+                <div className="relative inline-block mx-auto">
+                    <form className="lg:flex text-sm mb-0 lg:bg-gray-200 rounded-full" onSubmit={handleSubmit}>
                         <div className="lg:py-3 lg:px-5 flex items-center">
                             <label htmlFor="email" className="hidden lg:inline-block">
                                 <img src="/images/mailbox-icon.svg" alt="mailbox letter" />
                             </label>
 
                             <input
+                                className="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
                                 id="email"
                                 type="text"
+                                name="email"
+                                value={data.email}
+                                onChange={handleChange}
                                 placeholder="Your email address"
-                                className="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
+                                // required
                             />
                         </div>
 
@@ -33,6 +58,7 @@ export default function Footer() {
                             Subscribe
                         </button>
                     </form>
+                    {errors.email && <ErrorMessage className="text-left mt-1" message={errors.email} />}
                 </div>
             </div>
         </footer>
