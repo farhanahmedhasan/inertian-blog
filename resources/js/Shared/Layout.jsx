@@ -1,5 +1,5 @@
 import FlashMessage from "@/Shared/FlashMessage.jsx"
-import Footer from "@/Shared/Footer.jsx"
+import Footer from "@/Pages/partials/Footer.jsx"
 import Nav from "@/Shared/Nav.jsx"
 
 import { usePage } from "@inertiajs/react"

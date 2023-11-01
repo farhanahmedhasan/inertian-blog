@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+    scroll-behavior: smooth;
+}
 
 /* For Chrome or Safari */
 progress::-webkit-progress-bar {
