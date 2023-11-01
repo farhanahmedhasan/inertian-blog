@@ -4,7 +4,7 @@ import { Link, useForm, usePage } from "@inertiajs/react"
 import React from "react"
 
 export default function AddCommentForm({ post }) {
-    const user = usePage().props
+    const { user } = usePage().props
 
     const { data, setData, post: routePost, errors } = useForm({ body: "" })
 
@@ -60,12 +60,13 @@ export default function AddCommentForm({ post }) {
         </form>
     ) : (
         <p className="text-lg">
-            <Link className="font-bold hover:underline" href="/login">
-                Login
+            <Link className="font-semibold hover:underline" href="/login">
+                Login{" "}
             </Link>
             or
-            <Link className="font-bold hover:underline" href="/register">
-                Register
+            <Link className="font-semibold hover:underline" href="/register">
+                {" "}
+                Register{" "}
             </Link>
             to participate in a comment
         </p>
