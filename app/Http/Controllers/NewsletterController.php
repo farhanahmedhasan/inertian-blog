@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\MailchimpNewsletter;
 use Illuminate\Validation\ValidationException;
-use App\Services\Newsletter;
 use Exception;
 
 class NewsletterController extends Controller
 {
-    public function __invoke(Newsletter $newsletter)
+    public function __invoke(MailchimpNewsletter $newsletter)
     {
         //dd($newsletter);
 
