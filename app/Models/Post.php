@@ -24,20 +24,6 @@ class Post extends Model
     //Gimme author and category data every time i call post model
     protected $with = ['author', 'category'];
 
-    public function setTitleAttribute($value): void
-    {
-        $this->attributes['title'] = $value;
-        $this->attributes['slug'] = $this->uniqueSlug($value);
-    }
-
-    private function uniqueSlug($title)
-    {
-        $slug = Str::slug($title);
-        $count = Post::where('slug', 'like', $slug . "%")->count();
-        $newCount = $count > 0 ? ++$count : '';
-        return $newCount > 0 ? "$slug-$newCount" : $slug;
-    }
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

@@ -2,11 +2,12 @@ import ErrorMessage from "@/Shared/ErrorMessage.jsx"
 import { getCapitalizeStr } from "@/helper/utils.js"
 
 import { useForm } from "@inertiajs/react"
-import React from "react"
+import React, { useEffect } from "react"
 
 export default function Create({ categories }) {
     const { data, setData, post, errors } = useForm({
         title: "",
+        slug: "",
         excerpt: "",
         body: "",
         category_id: 1
@@ -23,6 +24,11 @@ export default function Create({ categories }) {
         e.preventDefault()
         post("/admin/posts")
     }
+
+    useEffect(() => {
+        const slug = data.title.trim().replace(/\s/g, "-").toLowerCase()
+        setData("slug", slug)
+    }, [data.title])
 
     return (
         <section className="px-6 py-8 max-w-3xl mx-auto">
@@ -41,6 +47,22 @@ export default function Create({ categories }) {
                         onChange={handleChange}
                     />
                     <ErrorMessage message={errors.title} />
+                </div>
+
+                <div className="mb-6">
+                    <label htmlFor="slug" className="block mb-2 uppercase font-bold text-xs text-gray-700">
+                        Slug
+                    </label>
+                    <input
+                        className="border border-gray-400 p-2 w-full"
+                        type="text"
+                        name="slug"
+                        id="slug"
+                        autoComplete="off"
+                        value={data.slug}
+                        onChange={handleChange}
+                    />
+                    <ErrorMessage message={errors.slug} />
                 </div>
 
                 <div className="mb-6">

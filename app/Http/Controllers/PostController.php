@@ -41,6 +41,7 @@ class PostController extends Controller
     {
         $attributes = request()->validate([
             'title' => 'required | min:8 | max:255',
+            'slug' => 'required | unique:posts,slug',
             'excerpt' => 'required',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')]
