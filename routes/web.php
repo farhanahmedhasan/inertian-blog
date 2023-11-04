@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index'])->name("home");
 Route::get('/post/{post:slug}', [PostController::class, 'show']); //Post->where('slug', $post)->findOrFail();
-Route::get('/admin/posts/create', [PostController::class, 'create']);
+Route::get('/admin/posts/create', [PostController::class, 'create'])->middleware('admin');
 Route::post('/post/{post:slug}/comments', [CommentController::class, 'store'])->middleware('auth');
 
 Route::post("/newsletter", NewsletterController::class);

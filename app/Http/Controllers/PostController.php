@@ -31,10 +31,6 @@ class PostController extends Controller
 
     public function create()
     {
-        if (auth()->user()?->username !== "yourHasan") {
-            abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
-        }
-
         return Inertia::render('Post/Create');
     }
 }
