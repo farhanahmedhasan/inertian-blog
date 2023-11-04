@@ -9,7 +9,7 @@ export default function Create({ categories }) {
         title: "",
         excerpt: "",
         body: "",
-        category_id: null
+        category_id: 1
     })
 
     function handleChange(e) {

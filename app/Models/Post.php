@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -14,6 +14,7 @@ class Post extends Model
 
     protected $fillable = [
         'category_id',
+        'user_id',
         'title',
         'slug',
         'excerpt',
@@ -22,6 +23,20 @@ class Post extends Model
 
     //Gimme author and category data every time i call post model
     protected $with = ['author', 'category'];
+
+    public function setTitleAttribute($value): void
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = $this->uniqueSlug($value);
+    }
+
+    private function uniqueSlug($title)
+    {
+        $slug = Str::slug($title);
+        $count = Post::where('slug', 'like', $slug . "%")->count();
+        $newCount = $count > 0 ? ++$count : '';
+        return $newCount > 0 ? "$slug-$newCount" : $slug;
+    }
 
     public function category(): BelongsTo
     {
