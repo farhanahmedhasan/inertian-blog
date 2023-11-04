@@ -29,8 +29,15 @@ class PostController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
-        return Inertia::render('Post/Create');
+        return Inertia::render('Post/Create', [
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function store()
+    {
+        dd(request()->all());
     }
 }
