@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -28,5 +27,14 @@ class PostController extends Controller
             'post' => $post,
             'comments' => $post->comments()->with('author')->get()
         ]);
+    }
+
+    public function create()
+    {
+        if (auth()->user()?->username !== "yourHasan") {
+            abort(\Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN);
+        }
+
+        return Inertia::render('Post/Create');
     }
 }
