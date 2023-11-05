@@ -44,7 +44,7 @@ class PostController extends Controller
             'title' => 'required | min:8 | max:255',
             'slug' => 'required | unique:posts,slug',
             'thumbnail' => 'required | image',
-            'excerpt' => 'required',
+            'excerpt' => 'required | max:574',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')]
         ]);
