@@ -10,7 +10,8 @@ export default function Create({ categories }) {
         slug: "",
         excerpt: "",
         body: "",
-        category_id: 1
+        category_id: 1,
+        thumbnail: ""
     })
 
     function handleChange(e) {
@@ -27,12 +28,13 @@ export default function Create({ categories }) {
 
     useEffect(() => {
         const slug = data.title.trim().replace(/\s/g, "-").toLowerCase()
-        setData("slug", slug)
+        setData("slug", slug) //From inertia setter func
     }, [data.title])
 
     return (
-        <section className="px-6 py-8 max-w-3xl mx-auto">
-            <form onSubmit={handleSubmit}>
+        <section className="px-10 py-6 mt-10 max-w-3xl mx-auto bg-gray-50 border rounded-xl shadow-xl">
+            <h1 className="font-bold text-center capitalize text-2xl mb-4">Publish new post</h1>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="mb-6">
                     <label htmlFor="title" className="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Title
@@ -97,25 +99,42 @@ export default function Create({ categories }) {
                     <ErrorMessage message={errors.body} />
                 </div>
 
-                <div className="mb-6 flex items-center">
-                    <label htmlFor="category_id" className="block uppercase font-bold text-xs text-gray-700">
-                        Category
-                    </label>
-                    <select
-                        className="ml-6"
-                        name="category_id"
-                        id="category_id"
-                        value={data.category}
-                        onChange={handleChange}
-                    >
-                        {categories.map((category) => (
-                            <option key={category.id} value={category.id}>
-                                {getCapitalizeStr(category.name)}
-                            </option>
-                        ))}
-                    </select>
+                <div className="grid grid-cols-3">
+                    <div className="flex items-center col-span-1">
+                        <label htmlFor="category_id" className="block uppercase font-bold text-xs text-gray-700">
+                            Category
+                        </label>
+                        <select
+                            className="ml-6"
+                            name="category_id"
+                            id="category_id"
+                            value={data.category}
+                            onChange={handleChange}
+                        >
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {getCapitalizeStr(category.name)}
+                                </option>
+                            ))}
+                        </select>
 
-                    <ErrorMessage message={errors.category} />
+                        <ErrorMessage message={errors.category} />
+                    </div>
+
+                    <div className="flex items-center gap-x-2 col-span-2">
+                        <label htmlFor="thumbnail" className="block uppercase font-bold text-xs text-gray-700">
+                            Thumbnail
+                        </label>
+                        <input
+                            type="file"
+                            name="thumbnail"
+                            id="thumbnail"
+                            autoComplete="off"
+                            value={data.thumbnail}
+                            onChange={handleChange}
+                        />
+                        <ErrorMessage message={errors.thumbnail} />
+                    </div>
                 </div>
 
                 <div className="flex justify-end mb-6">
