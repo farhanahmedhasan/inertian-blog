@@ -39,16 +39,18 @@ class PostController extends Controller
 
     public function store()
     {
-        dd(request()->all());
+
         $attributes = request()->validate([
             'title' => 'required | min:8 | max:255',
             'slug' => 'required | unique:posts,slug',
+            'thumbnail' => 'required | image',
             'excerpt' => 'required',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')]
         ]);
 
         $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnail');
 
         Post::create($attributes);
 

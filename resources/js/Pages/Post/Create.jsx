@@ -19,7 +19,7 @@ export default function Create({ categories }) {
         const value = e.target.value
 
         if (key === "thumbnail") {
-            setData({ ...data, thumbnail: e.target.files[0].name })
+            setData({ ...data, thumbnail: e.target.files[0] })
         }
 
         if (key !== "thumbnail") {
