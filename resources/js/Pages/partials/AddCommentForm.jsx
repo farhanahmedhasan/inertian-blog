@@ -1,3 +1,4 @@
+import InputTextArea from "@/Shared/form/InputTextArea.jsx"
 import ErrorMessage from "@/Shared/ErrorMessage.jsx"
 
 import { Link, useForm, usePage } from "@inertiajs/react"
@@ -36,18 +37,15 @@ export default function AddCommentForm({ post }) {
                 <h2>Want to comment ?</h2>
             </header>
 
-            <div className="mt-6">
-                <textarea
-                    className="text-sm w-full border border-gray-100 p-4 focus:outline-none focus:ring-1 rounded-xl mb-1"
-                    placeholder="Think of something nice to say !!!"
-                    rows={5}
-                    name="body"
-                    value={data.body}
-                    onChange={handleChange}
-                    required
-                ></textarea>
-                <ErrorMessage message={errors.body} />
-            </div>
+            <InputTextArea
+                name="body"
+                value={data.body}
+                textAreaClass="text-sm w-full border mt-6 !border-gray-100 p-4 focus:outline-none focus:ring-1 rounded-xl mb-1"
+                rows={5}
+                placeholder="Think of something nice to say !!!"
+                errorMessage={errors.body}
+                handleChange={handleChange}
+            />
 
             <div className="flex justify-end mt-4">
                 <button
