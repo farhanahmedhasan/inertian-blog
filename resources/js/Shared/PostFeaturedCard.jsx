@@ -12,7 +12,9 @@ export default function PostFeaturedCard({ post }) {
                     <img
                         src={post.thumbnail ? `/storage/${post.thumbnail}` : "images/illustration-1.png"}
                         alt="Blog Post illustration"
-                        className="rounded-xl"
+                        className="rounded-xl h-[580px] w-[600px] object-cover"
+                        height="580"
+                        width="600"
                     />
                 </div>
 

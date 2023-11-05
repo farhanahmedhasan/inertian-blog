@@ -14,7 +14,9 @@ export default function PostCard({ post, className }) {
                     <img
                         src={post.thumbnail ? `/storage/${post.thumbnail}` : "images/illustration-1.png"}
                         alt="Blog Post illustration"
-                        className="rounded-xl"
+                        className="rounded-xl h-[420px] w-[600px] object-cover"
+                        height="480"
+                        width="600"
                     />
                 </div>
 
