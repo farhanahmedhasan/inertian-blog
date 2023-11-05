@@ -18,7 +18,13 @@ export default function Create({ categories }) {
         const key = e.target.name
         const value = e.target.value
 
-        setData({ ...data, [key]: value })
+        if (key === "thumbnail") {
+            setData({ ...data, thumbnail: e.target.files[0].name })
+        }
+
+        if (key !== "thumbnail") {
+            setData({ ...data, [key]: value })
+        }
     }
 
     function handleSubmit(e) {
@@ -34,7 +40,7 @@ export default function Create({ categories }) {
     return (
         <section className="px-10 py-6 mt-10 max-w-3xl mx-auto bg-gray-50 border rounded-xl shadow-xl">
             <h1 className="font-bold text-center capitalize text-2xl mb-4">Publish new post</h1>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form onSubmit={handleSubmit}>
                 <div className="mb-6">
                     <label htmlFor="title" className="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Title
@@ -125,14 +131,7 @@ export default function Create({ categories }) {
                         <label htmlFor="thumbnail" className="block uppercase font-bold text-xs text-gray-700">
                             Thumbnail
                         </label>
-                        <input
-                            type="file"
-                            name="thumbnail"
-                            id="thumbnail"
-                            autoComplete="off"
-                            value={data.thumbnail}
-                            onChange={handleChange}
-                        />
+                        <input type="file" name="thumbnail" id="thumbnail" autoComplete="off" onChange={handleChange} />
                         <ErrorMessage message={errors.thumbnail} />
                     </div>
                 </div>
