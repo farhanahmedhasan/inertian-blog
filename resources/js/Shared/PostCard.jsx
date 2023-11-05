@@ -11,7 +11,11 @@ export default function PostCard({ post, className }) {
         >
             <div className="py-6 px-5">
                 <div>
-                    <img src="/images/illustration-3.png" alt="Blog Post illustration" className="rounded-xl" />
+                    <img
+                        src={post.thumbnail ? `/storage/${post.thumbnail}` : "images/illustration-1.png"}
+                        alt="Blog Post illustration"
+                        className="rounded-xl"
+                    />
                 </div>
 
                 <div className="mt-8 flex flex-col justify-between">
