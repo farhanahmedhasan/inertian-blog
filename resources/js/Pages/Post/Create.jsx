@@ -1,5 +1,6 @@
 import InputTextArea from "@/Shared/form/InputTextArea.jsx"
 import InputSelect from "@/Shared/form/InputSelect.jsx"
+import Settings from "@/Shared/Settings.jsx"
 import Input from "@/Shared/form/Input.jsx"
 
 import { useForm } from "@inertiajs/react"
@@ -39,9 +40,8 @@ export default function Create({ categories }) {
     }, [data.title])
 
     return (
-        <section className="px-10 py-6 mt-10 max-w-3xl mx-auto bg-gray-50 border rounded-xl shadow-xl">
-            <h1 className="font-bold text-center capitalize text-2xl mb-4">Publish new post</h1>
-            <form onSubmit={handleSubmit}>
+        <Settings header="Publish new post">
+            <form className="p-6 max-w-3xl mx-auto border rounded-xl shadow-xl" onSubmit={handleSubmit}>
                 <Input
                     name="title"
                     label="Title"
@@ -106,6 +106,6 @@ export default function Create({ categories }) {
                     </button>
                 </div>
             </form>
-        </section>
+        </Settings>
     )
 }

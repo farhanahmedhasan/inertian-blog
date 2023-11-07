@@ -1,8 +1,9 @@
 import { Link, usePage } from "@inertiajs/react"
 import React from "react"
+
 import DropDownTrigger from "@/Shared/DropDownTrigger.jsx"
-import useClickAway from "@/hooks/useClickAway.js"
 import DropDownLink from "@/Shared/DropDownLink.jsx"
+import useClickAway from "@/hooks/useClickAway.js"
 
 export default function Nav() {
     const { user } = usePage().props
