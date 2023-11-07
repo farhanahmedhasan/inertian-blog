@@ -16,7 +16,7 @@ export default function DropDown({ items, curItem, triggerName, itemVisitPath, a
     return (
         <div>
             {/*Trigger*/}
-            <DropDownTrigger triggerRef={ref} curItem={curItem} onToggle={handleCatToggle}>
+            <DropDownTrigger triggerRef={ref} curItem={curItem} onToggle={handleCatToggle} className="lg:w-36">
                 {curItem ? getCapitalizeStr(curItem.name) : triggerName}
                 <ArrowDown classes="absolute pointer-events-none right-[12px]" />
             </DropDownTrigger>
