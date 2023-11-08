@@ -1,6 +1,7 @@
-import React from "react"
+import Input from "@/Shared/form/Input.jsx"
+
 import { useForm } from "@inertiajs/react"
-import ErrorMessage from "@/Shared/ErrorMessage.jsx"
+import React from "react"
 
 export default function Create() {
     const { data, setData, post, errors } = useForm({
@@ -22,39 +23,26 @@ export default function Create() {
     }
 
     return (
-        <section className="max-w-xl mx-auto mt-12 bg-gray-100 border border-gray-200 rounded p-6">
+        <section className="max-w-xl mx-auto mt-12 border border-gray-200 shadow rounded p-6">
             <h1 className="text-xl text-center font-bold mb-10">Login</h1>
             <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                    <label htmlFor="email" className="block mb-2 uppercase font-bold text-xs text-gray-700">
-                        Email
-                    </label>
-                    <input
-                        className="border border-gray-400 p-2 w-full"
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={data.email}
-                        onChange={handleChange}
-                    />
-                    <ErrorMessage message={errors.email} />
-                </div>
+                <Input
+                    type="type"
+                    name="email"
+                    label="Email"
+                    value={data.email}
+                    handleChange={handleChange}
+                    errorMessage={errors.email}
+                />
 
-                <div className="mb-6">
-                    <label htmlFor="password" className="block mb-2 uppercase font-bold text-xs text-gray-700">
-                        Password
-                    </label>
-                    <input
-                        className="border border-gray-400 p-2 w-full"
-                        type="password"
-                        name="password"
-                        id="password"
-                        autoComplete="off"
-                        value={data.password}
-                        onChange={handleChange}
-                    />
-                    <ErrorMessage message={errors.password} />
-                </div>
+                <Input
+                    type="password"
+                    name="password"
+                    label="Password"
+                    value={data.password}
+                    handleChange={handleChange}
+                    errorMessage={errors.password}
+                />
 
                 <div className="mb-6">
                     <button
