@@ -26,7 +26,6 @@ class AdminPostController extends Controller
 
     public function store()
     {
-
         $attributes = request()->validate([
             'title' => 'required | min:8 | max:255',
             'slug' => 'required | unique:posts,slug',
@@ -50,5 +49,29 @@ class AdminPostController extends Controller
             'post' => $post,
             'categories' => Category::all()
         ]);
+    }
+
+    public function update(Post $post)
+    {
+        $attributes = request()->validate([
+            'title' => 'required | min:8 | max:255',
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
+            'thumbnail' => 'nullable | image',
+            'excerpt' => 'required | max:574',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
+
+        if (isset($attributes['thumbnail'])) {
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnail');
+        }
+
+        if (!isset($attributes['thumbnail'])) {
+            $attributes['thumbnail'] = $post->thumbnail;
+        }
+
+        $post->update($attributes);
+
+        return back()->with('message', 'Post Updated');
     }
 }

@@ -1,10 +1,11 @@
 import InputTextArea from "@/Shared/form/InputTextArea.jsx"
 import InputSelect from "@/Shared/form/InputSelect.jsx"
+import Settings from "@/Shared/Settings.jsx"
 import Input from "@/Shared/form/Input.jsx"
 
-import React from "react"
 import { useForm } from "@inertiajs/react"
-import Settings from "@/Shared/Settings.jsx"
+import React from "react"
+
 export default function Edit({ post, categories }) {
     const {
         data,
@@ -12,12 +13,13 @@ export default function Edit({ post, categories }) {
         post: route,
         errors
     } = useForm({
+        _method: "patch",
         title: post.title,
         slug: post.slug,
         excerpt: post.excerpt,
         body: post.body,
         category_id: post.category_id,
-        thumbnail: post.thumbnail
+        thumbnail: ""
     })
 
     function handleChange(e) {
@@ -35,7 +37,7 @@ export default function Edit({ post, categories }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // route("/admin/posts")
+        route(`/admin/posts/${post.slug}`)
     }
     return (
         <Settings header="Edit your post">
@@ -86,7 +88,7 @@ export default function Edit({ post, categories }) {
                     <div className="col-span-2 flex items-center">
                         <div className="rounded-xl overflow-hidden">
                             <img
-                                src={post.thumbnail ? `/storage/${post.thumbnail}` : "/images/illustration-4.png"}
+                                src={`/storage/${post.thumbnail}`}
                                 alt=""
                                 className="object-cover h-20 w-20"
                                 height="20"
