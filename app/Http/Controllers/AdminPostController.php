@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -43,5 +42,13 @@ class AdminPostController extends Controller
         Post::create($attributes);
 
         return redirect('/');
+    }
+
+    public function edit(Post $post)
+    {
+        return Inertia::render('Admin/Post/Edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 }

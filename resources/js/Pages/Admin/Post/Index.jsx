@@ -6,7 +6,7 @@ import { Link } from "@inertiajs/react"
 export default function Index({ posts }) {
     const datas = posts.data
     return (
-        <Settings header="Publish new post">
+        <Settings header="Show all the posts">
             <div className="flex flex-col max-w-4xl mx-auto">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -31,7 +31,7 @@ export default function Index({ posts }) {
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <div className="flex gap-x-8">
                                                         <Link
-                                                            href={`/admin/post/${post.slug}/edit`}
+                                                            href={`/admin/posts/${post.slug}/edit`}
                                                             className="text-blue-500 hover:text-indigo-600"
                                                         >
                                                             Edit

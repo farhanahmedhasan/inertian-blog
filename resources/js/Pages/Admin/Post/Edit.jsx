@@ -1,19 +1,23 @@
 import InputTextArea from "@/Shared/form/InputTextArea.jsx"
 import InputSelect from "@/Shared/form/InputSelect.jsx"
-import Settings from "@/Shared/Settings.jsx"
 import Input from "@/Shared/form/Input.jsx"
 
+import React from "react"
 import { useForm } from "@inertiajs/react"
-import React, { useEffect } from "react"
-
-export default function Create({ categories }) {
-    const { data, setData, post, errors } = useForm({
-        title: "",
-        slug: "",
-        excerpt: "",
-        body: "",
-        category_id: 1,
-        thumbnail: ""
+import Settings from "@/Shared/Settings.jsx"
+export default function Edit({ post, categories }) {
+    const {
+        data,
+        setData,
+        post: route,
+        errors
+    } = useForm({
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        body: post.body,
+        category_id: post.category_id,
+        thumbnail: post.thumbnail
     })
 
     function handleChange(e) {
@@ -31,16 +35,10 @@ export default function Create({ categories }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        post("/admin/posts")
+        // route("/admin/posts")
     }
-
-    useEffect(() => {
-        const slug = data.title.trim().replace(/\s/g, "-").toLowerCase()
-        setData("slug", slug) //From inertia setter func
-    }, [data.title])
-
     return (
-        <Settings header="Publish new post">
+        <Settings header="Edit your post">
             <form className="p-6 max-w-4xl mx-auto border rounded-xl shadow-xl" onSubmit={handleSubmit}>
                 <Input
                     name="title"
@@ -85,16 +83,26 @@ export default function Create({ categories }) {
                         handleChange={handleChange}
                     />
 
-                    <Input
-                        type="file"
-                        name="thumbnail"
-                        label="Thumbnail"
-                        labelClass="!mb-0"
-                        inputClass="!border-0"
-                        wrapperClass="flex items-center gap-x-2 col-span-2 !mb-0"
-                        errorMessage={errors.thumbnail}
-                        handleChange={handleChange}
-                    />
+                    <div className="col-span-2 flex items-center">
+                        <div className="rounded-xl overflow-hidden">
+                            <img
+                                src={post.thumbnail ? `/storage/${post.thumbnail}` : "/images/illustration-4.png"}
+                                alt=""
+                                className="object-cover h-20 w-20"
+                                height="20"
+                                width="80"
+                            />
+                        </div>
+
+                        <Input
+                            type="file"
+                            name="thumbnail"
+                            inputClass="!border-0"
+                            wrapperClass="!mb-0"
+                            errorMessage={errors.thumbnail}
+                            handleChange={handleChange}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex justify-end">
@@ -102,7 +110,7 @@ export default function Create({ categories }) {
                         type="submit"
                         className="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 inline-block"
                     >
-                        Publish Post
+                        Update Post
                     </button>
                 </div>
             </form>
