@@ -14,7 +14,7 @@ class AdminPostController extends Controller
     public function index(): Response
     {
         return Inertia::render('Admin/Post/Index', [
-            'posts' => Post::paginate(50)
+            'posts' => Post::latest()->paginate(30)
         ]);
     }
 

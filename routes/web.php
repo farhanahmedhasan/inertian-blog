@@ -24,6 +24,8 @@ Route::get('/login', [LoginController::class, 'create'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth');
 
+//Admin
 Route::get('/admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
 Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->middleware('admin');
 Route::post('/admin/posts', [AdminPostController::class, 'store'])->middleware('admin');
+Route::get('/admin/posts/{post:slug}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
