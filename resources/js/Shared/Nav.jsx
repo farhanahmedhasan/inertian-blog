@@ -30,12 +30,8 @@ export default function Nav() {
 
                         {toggle && (
                             <div className="absolute top-10 w-full bg-gray-100 py-3 flex flex-col items-start rounded-xl">
-                                <DropDownLink href="/admin/dashboard" isActive={url.startsWith("/admin/dashboard")}>
+                                <DropDownLink href="/admin/posts" isActive={url.startsWith("/admin/posts")}>
                                     Dashboard
-                                </DropDownLink>
-
-                                <DropDownLink href="/admin/posts/create" isActive={url.startsWith("/admin/posts")}>
-                                    Create New Post
                                 </DropDownLink>
 
                                 <DropDownLink method="post" href="/logout">

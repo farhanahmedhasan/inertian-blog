@@ -29,31 +29,4 @@ class PostController extends Controller
             'comments' => $post->comments()->with('author')->get()
         ]);
     }
-
-    public function create(): Response
-    {
-        return Inertia::render('Post/Create', [
-            'categories' => Category::all()
-        ]);
-    }
-
-    public function store()
-    {
-
-        $attributes = request()->validate([
-            'title' => 'required | min:8 | max:255',
-            'slug' => 'required | unique:posts,slug',
-            'thumbnail' => 'required | image',
-            'excerpt' => 'required | max:574',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
-
-        $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnail');
-
-        Post::create($attributes);
-
-        return redirect('/');
-    }
 }

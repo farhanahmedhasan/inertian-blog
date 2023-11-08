@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Inertia\Inertia;
+use Inertia\Response;
+
+class AdminPostController extends Controller
+{
+    public function index(): Response
+    {
+        return Inertia::render('Admin/Post/Index', [
+            'posts' => Post::paginate(50)
+        ]);
+    }
+
+    public function create(): Response
+    {
+        return Inertia::render('Admin/Post/Create', [
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function store()
+    {
+
+        $attributes = request()->validate([
+            'title' => 'required | min:8 | max:255',
+            'slug' => 'required | unique:posts,slug',
+            'thumbnail' => 'required | image',
+            'excerpt' => 'required | max:574',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
+
+        $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnail');
+
+        Post::create($attributes);
+
+        return redirect('/');
+    }
+}

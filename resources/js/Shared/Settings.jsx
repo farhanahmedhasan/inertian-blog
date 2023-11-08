@@ -12,34 +12,28 @@ export default function Settings({ children, header }) {
                 <aside className="w-48 mr-6">
                     <ul className="space-y-2">
                         <li>
-                            <Link
-                                href="/admin/dashboard"
-                                className={url.startsWith("/admin/dashboard") ? "text-blue-500" : ""}
-                            >
-                                Dashboard
+                            <Link href="/admin/posts" className={url === "/admin/posts" ? "text-blue-500" : ""}>
+                                All posts
                             </Link>
                         </li>
 
                         <li>
                             <Link
                                 href="/admin/posts/create"
-                                className={url.startsWith("/admin/posts") ? "text-blue-500" : ""}
+                                className={url === "/admin/posts/create" ? "text-blue-500" : ""}
                             >
                                 Create New post
                             </Link>
                         </li>
 
                         <li>
-                            <Link
-                                href="/admin/category"
-                                className={url.startsWith("/admin/dashboard") ? "text-blue-500" : ""}
-                            >
+                            <Link href="/admin/category" className={url === "/admin/dashboard" ? "text-blue-500" : ""}>
                                 Category Actions
                             </Link>
                         </li>
                     </ul>
                 </aside>
-                <main className="m-6 flex-1">{children}</main>
+                <main className="flex-1">{children}</main>
             </div>
         </section>
     )

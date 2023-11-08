@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CommentController;
@@ -23,5 +24,6 @@ Route::get('/login', [LoginController::class, 'create'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth');
 
-Route::get('/admin/posts/create', [PostController::class, 'create'])->middleware('admin');
-Route::post('/admin/posts', [PostController::class, 'store'])->middleware('admin');
+Route::get('/admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
+Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->middleware('admin');
+Route::post('/admin/posts', [AdminPostController::class, 'store'])->middleware('admin');
