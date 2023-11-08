@@ -72,6 +72,12 @@ class AdminPostController extends Controller
 
         $post->update($attributes);
 
-        return back()->with('message', 'Post Updated');
+        return back()->with('message', 'Post updated');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return back()->with('message', 'Post deleted');
     }
 }

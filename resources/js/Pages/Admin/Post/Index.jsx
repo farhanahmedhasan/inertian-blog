@@ -33,12 +33,18 @@ export default function Index({ posts }) {
                                                         <Link
                                                             href={`/admin/posts/${post.slug}/edit`}
                                                             className="text-blue-500 hover:text-indigo-600"
+                                                            as="button"
                                                         >
                                                             Edit
                                                         </Link>
-                                                        {/*<a href="#" className="text-red-600 hover:text-indigo-900">*/}
-                                                        {/*    Delete*/}
-                                                        {/*</a>*/}
+                                                        <Link
+                                                            href={`/admin/posts/${post.slug}`}
+                                                            className="text-red-600 hover:text-indigo-900"
+                                                            as="button"
+                                                            method="delete"
+                                                        >
+                                                            Delete
+                                                        </Link>
                                                     </div>
                                                 </td>
                                             </tr>
