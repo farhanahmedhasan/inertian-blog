@@ -26,21 +26,12 @@ class AdminPostController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => 'required | min:8 | max:255',
-            'slug' => 'required | unique:posts,slug',
-            'thumbnail' => 'required | image',
-            'excerpt' => 'required | max:574',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
+        Post::create(array_merge($this->validatePost(new Post()), [
+            'user_id' => auth()->id(),
+            'thumbnail' => request()->file('thumbnail')->store('thumbnail')
+        ]));
 
-        $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnail');
-
-        Post::create($attributes);
-
-        return redirect('/');
+        return redirect('/')->with('message', 'Your post has been created successfully');
     }
 
     public function edit(Post $post)
@@ -53,16 +44,9 @@ class AdminPostController extends Controller
 
     public function update(Post $post)
     {
-        $attributes = request()->validate([
-            'title' => 'required | min:8 | max:255',
-            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
-            'thumbnail' => 'nullable | image',
-            'excerpt' => 'required | max:574',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
+        $attributes = $this->validatePost($post);
 
-        if (isset($attributes['thumbnail'])) {
+        if ($attributes['thumbnail'] ?? false) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnail');
         }
 
@@ -72,12 +56,24 @@ class AdminPostController extends Controller
 
         $post->update($attributes);
 
-        return back()->with('message', 'Post updated');
+        return redirect('/admin/posts')->with('message', 'Post updated');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
         return back()->with('message', 'Post deleted');
+    }
+
+    protected function validatePost(Post $post): array
+    {
+        return request()->validate([
+            'title' => 'required | min:8 | max:255',
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
+            'thumbnail' => $post->exists ? ['nullable', 'image'] : ['required', 'image'],
+            'excerpt' => 'required | max:574',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
     }
 }
