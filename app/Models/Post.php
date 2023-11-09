@@ -22,6 +22,11 @@ class Post extends Model
         'body'
     ];
 
+//    public function getRouteKeyName(): string
+//    {
+//        return 'slug';
+//    }
+
     //Gimme author and category data every time i call post model
     protected $with = ['author', 'category'];
 
