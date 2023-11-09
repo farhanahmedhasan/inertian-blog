@@ -6,7 +6,7 @@ import DropDownLink from "@/Shared/DropDownLink.jsx"
 import useClickAway from "@/hooks/useClickAway.js"
 
 export default function Nav() {
-    const { user } = usePage().props
+    const { user, isAdmin } = usePage().props
     const { url } = usePage()
     const { ref, toggle, setToggle } = useClickAway()
 
@@ -30,9 +30,11 @@ export default function Nav() {
 
                         {toggle && (
                             <div className="absolute top-10 w-full bg-gray-100 py-3 flex flex-col items-start rounded-xl">
-                                <DropDownLink href="/admin/posts" isActive={url.startsWith("/admin/posts")}>
-                                    Dashboard
-                                </DropDownLink>
+                                {isAdmin && (
+                                    <DropDownLink href="/admin/posts" isActive={url.startsWith("/admin/posts")}>
+                                        Dashboard
+                                    </DropDownLink>
+                                )}
 
                                 <DropDownLink method="post" href="/logout">
                                     Logout
