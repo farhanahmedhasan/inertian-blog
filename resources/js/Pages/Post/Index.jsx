@@ -6,6 +6,7 @@ import React from "react"
 import Pagination from "@/Shared/Pagination.jsx"
 
 export default function Index({ posts, categories, curCategory, searchData }) {
+    console.log(posts)
     return (
         <>
             <PostsHeader categories={categories} curCategory={curCategory} searchData={searchData} />
@@ -35,12 +36,12 @@ export default function Index({ posts, categories, curCategory, searchData }) {
                 )}
             </section>
 
-            {posts.total > 6 && (
+            {posts.meta.total > 6 && (
                 <div className="flex items-center justify-end gap-x-4 mt-8">
                     <p>
-                        Showing {posts.from} to {posts.to} of {posts.total} results
+                        Showing {posts.meta.from} to {posts.meta.to} of {posts.meta.total} results
                     </p>
-                    <Pagination links={posts.links} />
+                    <Pagination links={posts.meta.links} />
                 </div>
             )}
         </>
