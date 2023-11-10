@@ -18,7 +18,7 @@ export default function Edit({ post, categories }) {
         slug: post.slug,
         excerpt: post.excerpt,
         body: post.body,
-        category_id: post.category_id,
+        category_id: post.category.id,
         thumbnail: ""
     })
 
