@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use Illuminate\Validation\Rule;
 use App\Models\Category;
 use App\Models\Post;
@@ -10,10 +11,10 @@ use Inertia\Response;
 
 class AdminPostController extends Controller
 {
-    public function index(): Response
+    public function index()
     {
         return Inertia::render('Admin/Post/Index', [
-            'posts' => Post::latest()->paginate(30)
+            'posts' => PostResource::collection(Post::latest()->paginate(30))
         ]);
     }
 
@@ -37,7 +38,7 @@ class AdminPostController extends Controller
     public function edit(Post $post)
     {
         return Inertia::render('Admin/Post/Edit', [
-            'post' => $post,
+            'post' => PostResource::make($post),
             'categories' => Category::all()
         ]);
     }
