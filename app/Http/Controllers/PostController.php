@@ -23,11 +23,13 @@ class PostController extends Controller
         ]);
     }
 
-    //    TODO: show only some keys on the comments->author && comments
     public function show(Post $post)
     {
+        // This only gives the comments collection bcz we're conditionally loading relationship in the commentResource
+        // return CommentResource::collection($post->comments);
         return Inertia::render('Post/Show', [
             'post' => PostResource::make($post),
+            // But here as we are loading author relation we will get both comment collection, and it's related author model
             'comments' => CommentResource::collection($post->comments()->with('author')->get()),
         ]);
     }

@@ -18,7 +18,7 @@ class CommentResource extends JsonResource
             'id' => $this->id,
             'body' => $this->body,
             'created_at' => $this->created_at,
-            'author' => UserResource::make($this->author)
+            'author' => UserResource::make($this->whenLoaded('author'))
         ];
     }
 }
