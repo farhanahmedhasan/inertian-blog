@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class PostResource extends JsonResource
 {
@@ -21,4 +22,9 @@ class PostResource extends JsonResource
             'category' => CategoryResource::make($this->whenLoaded('category'))
         ];
     }
+
+//    public function only(...$attributes)
+//    {
+//        return Arr::only($this->resolve(), $attributes);
+//    }
 }

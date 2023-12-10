@@ -7,6 +7,7 @@ import moment from "moment"
 import React from "react"
 
 export default function Show({ post, comments }) {
+    console.log(post)
     return (
         <section className="px-6 py-8">
             <div className="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">

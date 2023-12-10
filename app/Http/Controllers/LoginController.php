@@ -25,7 +25,7 @@ class LoginController extends Controller
         if (auth()->attempt($attributes)) {
             //session fixation for security purpose
             session()->regenerate();
-            
+
             //redirect with a flash message
             return redirect('/')->with('message', "Welcome Back 💖");
         }

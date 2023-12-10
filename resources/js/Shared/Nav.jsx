@@ -17,7 +17,7 @@ export default function Nav() {
         <nav className="md:flex md:justify-between md:items-center">
             <div>
                 <Link href="/" as="button">
-                    <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16" />
+                    <h1 className="text-3xl font-bold">Bloggy</h1>
                 </Link>
             </div>
 

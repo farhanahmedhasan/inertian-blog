@@ -1,9 +1,10 @@
 import Settings from "@/Shared/Settings.jsx"
 
-import React from "react"
 import { Link } from "@inertiajs/react"
+import React from "react"
 
 export default function Index({ posts }) {
+    console.log(posts)
     const datas = posts.data
     return (
         <Settings header="Show all the posts">

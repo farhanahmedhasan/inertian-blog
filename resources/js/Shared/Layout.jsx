@@ -1,10 +1,10 @@
-import FlashMessage from "@/Shared/FlashMessage.jsx"
-import Footer from "@/Pages/partials/Footer.jsx"
-import Nav from "@/Shared/Nav.jsx"
-
 import { usePage } from "@inertiajs/react"
 import { TiTick } from "react-icons/ti"
 import React from "react"
+
+import FlashMessage from "@/Shared/FlashMessage.jsx"
+import Footer from "@/Pages/partials/Footer.jsx"
+import Nav from "@/Shared/Nav.jsx"
 
 export default function Layout({ children }) {
     const { flash } = usePage().props
@@ -13,6 +13,7 @@ export default function Layout({ children }) {
     //     message: "User has created successfully"
     // }
     //TODO When comes back to the page with <- history button flash message recreated
+
     return (
         <section className="px-6 py-8">
             <Nav />

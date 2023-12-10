@@ -28,7 +28,7 @@ export default function PostsHeader({ categories, curCategory, searchData }) {
     return (
         <header className="max-w-xl mx-auto mt-20 text-center">
             <h1 className="text-4xl">
-                Latest <span className="text-blue-500">Laravel From Scratch</span> News
+                Latest <span className="text-blue-500">Tech Blogs</span> News
             </h1>
 
             <div className="space-y-2 lg:space-y-0 lg:space-x-4 mt-6">
