@@ -12,7 +12,7 @@ export default function Layout({ children }) {
     // const flash = {
     //     message: "User has created successfully"
     // }
-    //TODO When comes back to the page with <- history button flash message recreated
+    //TODO when comes back to the page with <- history button flash message recreated
 
     return (
         <section className="px-6 py-8">
