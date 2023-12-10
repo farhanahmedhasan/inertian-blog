@@ -1,6 +1,7 @@
 import { createInertiaApp } from "@inertiajs/react"
 import { createRoot } from "react-dom/client"
 import Layout from "@/Shared/Layout.jsx"
+import "../css/app.css"
 import React from "react"
 
 const appName = window.document.getElementsByTagName("title")[0]?.innerText || "Blog"
