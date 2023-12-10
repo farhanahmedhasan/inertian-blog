@@ -5,7 +5,6 @@
     <title inertia>Blog</title>
     @routes()
     @vite('resources/js/Main.jsx')
-    @vite('resources/css/app.css')
     @inertiaHead
 </head>
 <body>
